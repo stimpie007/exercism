@@ -11,40 +11,19 @@ class Node:
 
 
 def BuildTree(records):
-    root = None
-    records.sort(key=lambda x: x.record_id)
-    ordered_id = [i.record_id for i in records]
-    if records:
-        if ordered_id[-1] != len(ordered_id) - 1:
-            raise ValueError('Tree must be continuous')
-        if ordered_id[0] != 0:
-            raise ValueError('Tree must start with id 0')
-    trees = []
-    parent = {}
-    for i in range(len(ordered_id)):
-        for j in records:
-            if ordered_id[i] == j.record_id:
-                if j.record_id == 0:
-                    if j.parent_id != 0:
-                        raise ValueError('Root node cannot have a parent')
-                if j.record_id < j.parent_id:
-                    raise ValueError('Parent id must be lower than child id')
-                if j.record_id == j.parent_id:
-                    if j.record_id != 0:
-                        raise ValueError('Tree is a cycle')
-                trees.append(Node(ordered_id[i]))
-    for i in range(len(ordered_id)):
-        for j in trees:
-            if i == j.node_id:
-                parent = j
-        for j in records:
-            if j.parent_id == i:
-                for k in trees:
-                    if k.node_id == 0:
-                        continue
-                    if j.record_id == k.node_id:
-                        child = k
-                        parent.children.append(child)
-    if len(trees) > 0:
-        root = trees[0]
-    return root
+    if not records:
+        return None
+
+    records.sort(key=lambda r: r.record_id)
+
+    if not all(r.record_id == i for i, r in enumerate(records)):
+        raise ValueError('record numbers must be unique and continuous starting from 0')
+    if not all(r.parent_id == 0 or 0 <= r.parent_id < r.record_id for r in records):
+        raise ValueError('parent id must be 0 or lower than child id')
+
+    nodes = [Node(0)]
+    for r in records[1:]:
+        nodes.append(Node(r.record_id))
+        nodes[r.parent_id].children.append(nodes[-1])
+
+    return nodes[0]
