@@ -27,10 +27,10 @@ class LinkedList:
         return self._value
 
     def push(self, value):
-        pass
+        self.values.append(value)
 
     def pop(self):
-        pass
+        return self.values.pop()
 
     def reversed(self):
         pass
