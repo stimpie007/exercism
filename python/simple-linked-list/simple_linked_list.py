@@ -26,6 +26,11 @@ class LinkedList:
     def value(self):
         return self._value
 
+    def next(self):
+        _values = iter(self.values)
+        self._value = next(_values)
+        return self
+
     def push(self, value):
         self.values.append(value)
 
