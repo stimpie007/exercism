@@ -11,13 +11,20 @@ class Node:
 
 class LinkedList:
     def __init__(self, values=[]):
-        pass
+        self.values = values
+        self._value = None
 
     def __len__(self):
-        pass
+        return len(self.values)
 
     def head(self):
-        pass
+        if not self.values:
+            raise EmptyListException()
+        self._value = self.values[-1]
+        return self
+
+    def value(self):
+        return self._value
 
     def push(self, value):
         pass
@@ -30,4 +37,5 @@ class LinkedList:
 
 
 class EmptyListException(Exception):
+    # raise ValueError("Pretty empty list eh.")
     pass
