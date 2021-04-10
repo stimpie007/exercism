@@ -1,15 +1,19 @@
+import re
 from itertools import permutations
+from operator import mul
 
 
 def solve(puzzle):
-    words = [w for w in puzzle.split() if w.isalpha()]
-    nonzero = set([w[0] for w in words])
-    letters = list(set(''.join(words)) - nonzero) + list(nonzero)
-    perms = permutations('0123456789', len(letters))
-    for perm in perms:
-        conv_dict = dict(zip(letters, perm))
-        if '0' in perm[-len(nonzero):]:
+    words = re.findall(r"\w+", puzzle)[::-1]
+    d = {w[0]: 0 for w in words}
+    knz = len(d)
+    d.update({c: 0 for c in filter(str.isalpha, puzzle)})
+    for i, w in enumerate(words):
+        for j, c in enumerate(w[::-1]):
+            d[c] = d[c] + 10 ** j * (bool(i) * 2 - 1)
+    factors = d.values()
+    for p in permutations(range(10), len(d)):
+        if 0 in p[:knz]:
             continue
-        if eval(''.join([conv_dict[c] if c.isalpha() else c for c in puzzle])):
-            return {k: int(v) for k, v in conv_dict.items()}
-    return {}
+        if not sum(map(mul, factors, p)):
+            return dict(zip(d.keys(), p))
