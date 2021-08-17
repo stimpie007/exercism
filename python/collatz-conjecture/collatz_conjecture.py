@@ -9,12 +9,10 @@ def steps(number):
     amountofsteps = 0
 
     while not (number == 1):
-        # odd
-        if number % 2 != 0:
-            number = (number * 3) + 1
-        # even
-        if number % 2 == 0:
+        if number % 2 == 0:  # even
             number = number / 2
+        else:  # odd
+            number = (number * 3) + 1
 
         amountofsteps += 1
 
