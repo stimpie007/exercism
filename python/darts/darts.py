@@ -4,7 +4,24 @@ MIDDLE_CIRKLE = 5
 INNER_CIRKLE = 10
 
 
-def score(x, y):
+def score(x: int, y: int) -> int:
+    """
+    Calculate the score of the dart throw.
+
+    Args:
+        x: int
+            x-coordinate of the throw
+        y: int
+            y-coordinate of the throw
+
+    Returns:
+        points: int
+            Awarded points in regards to where the dart landed
+
+    Raises:
+        exception: Exception
+            Raised when you're shot is completely off or not an integer.
+    """
     radius = (x ** 2 + y ** 2) ** 0.5
 
     if radius > 10:
