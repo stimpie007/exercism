@@ -13,8 +13,26 @@ COLORS = {
 
 
 def color_code(color: str) -> int:
+    """
+    Get a resistor code for the given color
+
+    Args:
+        color: str
+            Color to check resistor number
+
+    Returns:
+        resistor: int
+            Resistor number for given color
+    """
     return COLORS[color]
 
 
 def colors() -> list:
+    """
+    Get a list of colors
+
+    Returns:
+        colors: list
+            Colors to choose from
+    """
     return list(COLORS)
