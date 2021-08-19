@@ -14,7 +14,7 @@ class Hangman:
 
     def guess(self, char):
         if self.status != STATUS_ONGOING:
-            raise ValueError('Game finished')
+            raise ValueError("Game Over.\n" f"You {self.status}!")
         if char not in self.guesses and char in self.word:
             self.guesses.add(char)
             if all(c in self.guesses for c in self.word):
