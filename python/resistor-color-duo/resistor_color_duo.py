@@ -1,3 +1,5 @@
+from typing import List
+
 COLORS = {
     "black": 0,
     "brown": 1,
@@ -12,17 +14,16 @@ COLORS = {
 }
 
 
-def value(colors: list(str)) -> int:
+def value(colors: List[str]) -> int:
     """
     Get the resistor code for given color codes
 
     Args:
-        colors: list(str)
+        colors: List[str]
             Colors look for resistor code
 
     Returns:
         resistor_code: int
             Color code for the given resistors
     """
-    resistors = [COLORS[color] for color in colors][:2]
-    return int("".join(map(str, resistors)))
+    return int(str(COLORS[colors[0]]) + str(COLORS[colors[1]]))
