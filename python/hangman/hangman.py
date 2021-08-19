@@ -7,6 +7,7 @@ STATUS_ONGOING = "ongoing"
 
 class Hangman:
     def __init__(self, word):
+        self.word = word
         self.remaining_guesses = 9
         self.status = STATUS_ONGOING
 
@@ -14,7 +15,7 @@ class Hangman:
         pass
 
     def get_masked_word(self):
-        pass
+        return len(self.word) * '_'
 
     def get_status(self):
         return self.status
