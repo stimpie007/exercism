@@ -7,15 +7,25 @@ STATUS_ONGOING = "ongoing"
 
 class Hangman:
     def __init__(self, word):
-        self.word = word
         self.remaining_guesses = 9
         self.status = STATUS_ONGOING
+        self.word = word
+        self.guesses = set()
 
     def guess(self, char):
-        pass
+        if self.status != STATUS_ONGOING:
+            raise ValueError('Game finished')
+        if char not in self.guesses and char in self.word:
+            self.guesses.add(char)
+            if all(c in self.guesses for c in self.word):
+                self.status = STATUS_WIN
+        else:
+            self.remaining_guesses -= 1
+            if self.remaining_guesses < 0:
+                self.status = STATUS_LOSE
 
     def get_masked_word(self):
-        return len(self.word) * '_'
+        return ''.join(c if c in self.guesses else '_' for c in self.word)
 
     def get_status(self):
         return self.status
