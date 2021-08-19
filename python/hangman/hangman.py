@@ -17,4 +17,4 @@ class Hangman:
         pass
 
     def get_status(self):
-        pass
+        return self.status
