@@ -1,20 +1,70 @@
+"""
+Exercism solution for "binary-search-tree"
+"""
+from typing import Any, List, Generator
+
 class TreeNode:
-    def __init__(self, data, left=None, right=None):
-        self.data = None
-        self.left = None
-        self.right = None
+    """
+    Simple implementation of a node for a binary search tree.
+    """
+    def __init__(self, data: Any, left: "TreeNode" = None, right: "TreeNode" = None) -> None:
+        self.data = data
+        self.left = left
+        self.right = right
 
-    def __str__(self):
-        fmt = 'TreeNode(data={}, left={}, right={})'
-        return fmt.format(self.data, self.left, self.right)
-
+    def __str__(self) -> None:
+        return f"{self.__class__.__name__}(data={self.data}, left={self.left}, right={self.right})"
 
 class BinarySearchTree:
-    def __init__(self, tree_data):
-        pass
+    """
+    Simple implementation of a binary search tree.
+    """
+    def __init__(self, tree_data: List[Any]) -> None:
+        self.root = TreeNode(tree_data[0])
+        for value in tree_data[1:]:
+            self.add(value)
 
-    def data(self):
-        pass
+    def add(self, value: Any) -> None:
+        """
+        Add the given value to the tree.
+        """
+        stack = [self.root]
+        while stack:
+            root = stack.pop()
+            if value <= root.data:
+                if root.left is None:
+                    root.left = TreeNode(value)
+                    return
+                stack.append(root.left)
+            else:
+                if root.right is None:
+                    root.right = TreeNode(value)
+                    return
+                stack.append(root.right)
 
-    def sorted_data(self):
-        pass
+    @classmethod
+    def inorder(cls, node: "TreeNode") -> Generator[Any, None, None]:
+        """
+        Iterate over the tree's nodes in order.
+        """
+        if node != None:
+            for left in cls.inorder(node.left):
+                yield left
+            yield node
+            for right in cls.inorder(node.right):
+                yield right
+
+    def __iter__(self):
+        return iter((n.data for n in self.inorder(self.root)))
+
+    def data(self) -> "TreeNode":
+        """
+        Return the root node.
+        """
+        return self.root
+
+    def sorted_data(self) -> List[int]:
+        """
+        Return the sorted data held in the tree.
+        """
+        return list(self)
