@@ -5,6 +5,13 @@ from enum import Enum
 from threading import Lock
 
 
+def error_if_not_open(state) -> None:
+    if state is State.UNOPENED:
+        raise ValueError("Account never opened!")
+    if state is State.CLOSED:
+        raise ValueError("Account not open!")
+
+
 class State(Enum):
     """
     The various states of a bank account.
@@ -25,12 +32,6 @@ class BankAccount(object):
         self._state = State.UNOPENED
         self._lock = Lock()
 
-    def _error_if_not_open(self) -> None:
-        if self._state is State.UNOPENED:
-            raise ValueError("Account never opened!")
-        if self._state is State.CLOSED:
-            raise ValueError("Account not open!")
-
     def open(self) -> None:
         """
         Open the account and initialize the balance.
@@ -46,7 +47,7 @@ class BankAccount(object):
         Close the account.
         """
         with self._lock:
-            self._error_if_not_open()
+            error_if_not_open(self._state)
             self._state = State.CLOSED
 
     def get_balance(self) -> int:
@@ -54,27 +55,33 @@ class BankAccount(object):
         Get the current balance of the account.
         """
         with self._lock:
-            self._error_if_not_open()
+            error_if_not_open(self._state)
             return self._balance
 
     def deposit(self, amount: int) -> None:
         """
-        Deposit amount into account. Raises ValueError on negative amounts.
+        Deposit amount into account.
+
+        Raises:
+            ValueError on negative amounts.
         """
         with self._lock:
-            self._error_if_not_open()
+            error_if_not_open(self._state)
             if amount < 0:
                 raise ValueError("Cannot make a negative deposit!")
             self._balance += amount
 
     def withdraw(self, amount: int) -> None:
         """
-        Withdraw amount from account. Raises ValueError on negative or overdraft withdrawls.
+        Withdraw amount from account.
+
+        Raises:
+            ValueError on negative or overdraft withdraws.
         """
         with self._lock:
-            self._error_if_not_open()
+            error_if_not_open(self._state)
             if amount < 0:
-                raise ValueError("Cannot make a negative withdrawl!")
+                raise ValueError("Cannot make a negative withdraw!")
             elif amount > self._balance:
                 raise ValueError("Cannot overdraw account!")
             self._balance -= amount
