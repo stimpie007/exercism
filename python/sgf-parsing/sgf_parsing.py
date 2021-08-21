@@ -1,4 +1,8 @@
-class SgfTree:
+import re
+import string
+
+
+class SgfTree(object):
     def __init__(self, properties=None, children=None):
         self.properties = properties or {}
         self.children = children or []
@@ -26,4 +30,31 @@ class SgfTree:
 
 
 def parse(input_string):
-    pass
+    input_string = input_string.replace("\\", "").replace("\t", " ")
+    regex = r"\(?\;?(?P<keys>[A-Z]+)?(?:\[(?P<values>(.|\s)+?\]?)\])"
+    matches = re.finditer(regex, input_string, re.MULTILINE)
+    if input_string == "(;)":
+        return SgfTree()
+    if re.match(regex, input_string) is None:
+        raise ValueError("Invalid input")
+    properties, children, last_key, level = {}, [], "", 0
+    for matchNum, match in enumerate(matches, start=1):
+        full = match.group()
+        key = match.group('keys')
+        value = match.group('values')
+        if "(;" in full or ";" in full:
+            if not key and not last_key or key not in string.ascii_uppercase or not value:
+                raise ValueError("Invalid input")
+            level += 1
+        if level == 1:
+            if not key and last_key:
+                properties[last_key].append(value)
+            else:
+                if key in properties:
+                    properties[key].append(value)
+                else:
+                    properties[key] = [value]
+        if level >= 2:
+            children.append(SgfTree({key: [value]}))
+        if key: last_key = key
+    return SgfTree(properties, children)
