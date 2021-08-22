@@ -1,28 +1,28 @@
-class Zipper:
+from functools import partial
+
+
+class Zipper(object):
     @staticmethod
     def from_tree(tree):
-        pass
+        return Zipper(tree)
 
-    def value(self):
-        pass
+    def __init__(self, tree, parents=[]):
+        self.tree, self.parents = tree, parents
+        for val in ('left', 'right', 'value'):
+            setattr(self, 'set_%s' % val, partial(self.set, val))
+            setattr(self, val, partial(self.get, val))
 
-    def set_value(self):
-        pass
+    def get(self, key):
+        if key == 'value':
+            return self.tree['value']
+        return Zipper(self.tree[key], self.parents + [self]) if self.tree[key] else None
 
-    def left(self):
-        pass
-
-    def set_left(self):
-        pass
-
-    def right(self):
-        pass
-
-    def set_right(self):
-        pass
+    def set(self, key, item):
+        self.tree[key] = item
+        return self.parents[0] if self.parents else self
 
     def up(self):
-        pass
+        return (self.parents[-1] if self.parents else None)
 
     def to_tree(self):
-        pass
+        return self.parents[0].tree if self.parents else self.tree
