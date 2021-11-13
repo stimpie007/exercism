@@ -36,8 +36,10 @@ def remove_suffix_ness(word):
 
     This function takes in a word and returns the base word with `ness` removed.
     """
-    word = word.strip('ness')
-    return word.replace(word[-1], 'y') if word.endswith('i') else word
+    # Tried word.strip('ness') but 'sadness' somehow resulted in 'ad'
+    if word.endswith('ness'):
+        word = word[:-4]
+        return word.replace(word[-1], 'y') if word.endswith('i') else word
 
 
 def noun_to_verb(sentence, index):
