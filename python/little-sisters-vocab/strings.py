@@ -52,5 +52,4 @@ def noun_to_verb(sentence, index):
     is split apart.  The function should return the extracted
     adjective as a verb.
     """
-
-    pass
+    return f"{sentence.replace('.', '').split()[index]}en"
