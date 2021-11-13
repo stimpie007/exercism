@@ -22,10 +22,7 @@ def make_word_groups(vocab_words):
     with the prefix  and the words with prefix applied, separated
      by ' :: '.
     """
-    prefix = vocab_words[0]
-    vocab_words_with_prefix = [prefix + word for word in vocab_words[1:]]
-    vocab_words_with_prefix.insert(0, prefix)
-    return " :: ".join(vocab_words_with_prefix)
+    return (" :: " + vocab_words[0]).join(vocab_words)
 
 
 def remove_suffix_ness(word):
