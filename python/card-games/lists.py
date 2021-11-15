@@ -1,3 +1,6 @@
+from statistics import mean, median
+
+
 def get_rounds(number):
     """
 
@@ -33,7 +36,7 @@ def card_average(hand):
     :param hand: list - cards in hand.
     :return:  float - average value of the cards in the hand.
     """
-    return sum(hand) / len(hand)
+    return mean(hand)
 
 
 def approx_average_is_average(hand):
@@ -42,8 +45,7 @@ def approx_average_is_average(hand):
     :param hand: list - cards in hand.
     :return: bool - is approximate average the same as true average?
     """
-
-    pass
+    return mean([hand[0], hand[-1]]) is mean(hand) or median(hand) is mean(hand)
 
 
 def average_even_is_average_odd(hand):
