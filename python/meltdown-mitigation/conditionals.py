@@ -35,8 +35,7 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     (generated power/ theoretical max power)*100
     where generated power = voltage * current
     """
-    generated_power = voltage * current
-    efficiency = (generated_power / theoretical_max_power) * 100
+    efficiency = (voltage * current / theoretical_max_power) * 100
 
     if 80 <= efficiency:
         return 'green'
