@@ -4,8 +4,7 @@ def get_rounds(number):
      :param number: int - current round number.
      :return: list - current round and the two that follow.
     """
-
-    pass
+    return [number for number in range(number, number + 3)]
 
 
 def concatenate_rounds(rounds_1, rounds_2):
