@@ -4,8 +4,7 @@ def capitalize_title(title):
     :param title: str title string that needs title casing
     :return:  str title string in title case (first letters capitalized)
     """
-
-    pass
+    return title.capitalize()
 
 
 def check_sentence_ending(sentence):
@@ -14,8 +13,7 @@ def check_sentence_ending(sentence):
     :param sentence: str a sentence to check.
     :return:  bool True if punctuated correctly with period, False otherwise.
     """
-
-    pass
+    return True if sentence.endswith('.') else False
 
 
 def clean_up_spacing(sentence):
