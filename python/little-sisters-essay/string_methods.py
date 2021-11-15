@@ -22,7 +22,7 @@ def clean_up_spacing(sentence):
     :param sentence: str a sentence to clean of leading and trailing space characters.
     :return: str a sentence that has been cleaned of leading and trailing space characters.
     """
-    return sentence.replace('  ', '')
+    return sentence.strip()
 
 
 def replace_word_choice(sentence, old_word, new_word):
@@ -33,5 +33,4 @@ def replace_word_choice(sentence, old_word, new_word):
     :param new_word: str replacement word
     :return:  str input sentence with new words in place of old words
     """
-
-    pass
+    return sentence.replace(old_word, new_word)
