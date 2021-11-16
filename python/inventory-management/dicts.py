@@ -45,8 +45,7 @@ def remove_item(inventory, item):
     :param item: str - item to remove from the inventory.
     :return:  dict - updated inventory dictionary with item removed.
     """
-    if item in inventory:
-        inventory.pop(item)
+    inventory.pop(item, None)
     return inventory
 
 
