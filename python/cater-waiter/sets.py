@@ -17,7 +17,7 @@ def clean_ingredients(dish_name, dish_ingredients):
     This function should return a `tuple` with the name of the dish as the first item,
     followed by the de-duped `set` of ingredients as the second item.
     """
-    return (dish_name, set(dish_ingredients))
+    return dish_name, set(dish_ingredients)
 
 
 def check_drinks(drink_name, drink_ingredients):
@@ -30,8 +30,11 @@ def check_drinks(drink_name, drink_ingredients):
     The function should return the name of the drink followed by "Mocktail" if the drink has
     no alcoholic ingredients, and drink name followed by "Cocktail" if the drink includes alcohol.
     """
-
-    pass
+    for ingredient in drink_ingredients:
+        if ingredient in ALCOHOLS:
+            return f"{drink_name} Cocktail"
+        else:
+            return f"{drink_name} Mocktail"
 
 
 def categorize_dish(dish_name, dish_ingredients):
