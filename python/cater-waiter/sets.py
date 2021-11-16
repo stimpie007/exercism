@@ -17,8 +17,7 @@ def clean_ingredients(dish_name, dish_ingredients):
     This function should return a `tuple` with the name of the dish as the first item,
     followed by the de-duped `set` of ingredients as the second item.
     """
-
-    pass
+    return (dish_name, set(dish_ingredients))
 
 
 def check_drinks(drink_name, drink_ingredients):
