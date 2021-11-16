@@ -30,9 +30,7 @@ def check_drinks(drink_name, drink_ingredients):
     The function should return the name of the drink followed by "Mocktail" if the drink has
     no alcoholic ingredients, and drink name followed by "Cocktail" if the drink includes alcohol.
     """
-    if any(True for i in drink_ingredients if i in ALCOHOLS):
-        return drink_name + " Cocktail"
-    return drink_name + " Mocktail"
+    return drink_name + " Cocktail" if set(drink_ingredients).intersection(ALCOHOLS) else drink_name + " Mocktail"
 
 
 def categorize_dish(dish_name, dish_ingredients):
@@ -46,12 +44,12 @@ def categorize_dish(dish_name, dish_ingredients):
     All dishes will "fit" into one of the categories imported from `categories.py`
     (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
     """
-    for v, name in ((VEGAN, "VEGAN"),
+    for category, name in ((VEGAN, "VEGAN"),
                     (VEGETARIAN, "VEGETARIAN"),
                     (PALEO, "PALEO"),
                     (KETO, "KETO"),
                     (OMNIVORE, "OMNIVORE")):
-        if set(dish_ingredients) <= set(v):
+        if set(dish_ingredients) <= set(category):
             return f"{dish_name}: {name}"
 
 
