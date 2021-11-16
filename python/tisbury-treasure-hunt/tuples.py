@@ -42,8 +42,6 @@ def clean_up(combined_record_group):
     :param combined_record_group: tuple of tuples - everything from both participants.
     :return: string of tuples separated by newlines - everything "cleaned". Excess coordinates and information removed.
     """
-    # ('Brass Spyglass', '4B', 'Abandoned Lighthouse', ('4', 'B'), 'Blue')
-    # ('Brass Spyglass', 'Abandoned Lighthouse', ('4', 'B'), 'Blue')\n
     clean_records = ''
 
     for record in combined_record_group:
