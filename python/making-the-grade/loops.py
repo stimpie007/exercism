@@ -40,6 +40,7 @@ def student_ranking(student_scores, student_names):
      :param student_names: list of names in descending order by exam score.
      :return: list of strings in format ["<rank>. <student name>: <score>"].
      """
+    # There should be a buildin argument in zip to use its current index..
     return [f"{index + 1}. {student}: {score}" for index, (student, score) in
             enumerate(zip(student_names, student_scores))]
 
@@ -49,4 +50,8 @@ def perfect_score(student_info):
     :param student_info: list of [<student name>, <score>] lists
     :return: first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """
-    pass
+    for student in student_info:
+        if 100 in student:
+            return student
+
+    return list()
