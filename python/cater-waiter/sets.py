@@ -30,11 +30,9 @@ def check_drinks(drink_name, drink_ingredients):
     The function should return the name of the drink followed by "Mocktail" if the drink has
     no alcoholic ingredients, and drink name followed by "Cocktail" if the drink includes alcohol.
     """
-    for ingredient in drink_ingredients:
-        if ingredient in ALCOHOLS:
-            return f"{drink_name} Cocktail"
-        else:
-            return f"{drink_name} Mocktail"
+    if any(True for i in drink_ingredients if i in ALCOHOLS):
+        return drink_name + " Cocktail"
+    return drink_name + " Mocktail"
 
 
 def categorize_dish(dish_name, dish_ingredients):
@@ -48,9 +46,13 @@ def categorize_dish(dish_name, dish_ingredients):
     All dishes will "fit" into one of the categories imported from `categories.py`
     (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
     """
-    for category in [VEGAN, VEGETARIAN, PALEO, KETO, OMNIVORE]:
-        if category.issuperset(dish_ingredients):
-            return f"{dish_name} {category}"
+    for v, name in ((VEGAN, "VEGAN"),
+                    (VEGETARIAN, "VEGETARIAN"),
+                    (PALEO, "PALEO"),
+                    (KETO, "KETO"),
+                    (OMNIVORE, "OMNIVORE")):
+        if set(dish_ingredients) <= set(v):
+            return f"{dish_name}: {name}"
 
 
 def tag_special_ingredients(dish):
@@ -63,9 +65,9 @@ def tag_special_ingredients(dish):
     For the purposes of this exercise, all allergens or special ingredients that need to be tracked are in the
     SPECIAL_INGREDIENTS constant imported from `categories.py`.
     """
-    dish_name, dish_ingredients = dish
-    special_ingredients = {ingredient for ingredient in dish_ingredients if ingredient in SPECIAL_INGREDIENTS}
-    return dish_name, special_ingredients
+    dish_name, ingredients = dish
+    if allergens := SPECIAL_INGREDIENTS.intersection(set(ingredients)):
+        return dish_name, allergens
 
 
 def compile_ingredients(dishes):
@@ -76,10 +78,7 @@ def compile_ingredients(dishes):
 
     This function should return a `set` of all ingredients from all listed dishes.
     """
-    ingredients = set()
-    for dish in dishes:
-        ingredients.update(dish)
-    return set(ingredients)
+    return set.union(*dishes)
 
 
 def separate_appetizers(dishes, appetizers):
@@ -92,9 +91,7 @@ def separate_appetizers(dishes, appetizers):
     The function should return the list of dish names with appetizer names removed.
     Either list could contain duplicates and may require de-duping.
     """
-    dish_names = set()
-    dish_names = dish_names.union(dishes, appetizers)
-    return dish_names
+    return list(set(dishes) - set(appetizers))
 
 
 def singleton_ingredients(dishes, intersection):
@@ -109,5 +106,5 @@ def singleton_ingredients(dishes, intersection):
     Each `<CATEGORY>_INTERSECTION` is an `intersection` of all dishes in the category.
     The function should return a `set` of ingredients that only appear in a single dish.
     """
-
-    pass
+    singletons = (dish - intersection for dish in dishes)
+    return set.union(*singletons)
