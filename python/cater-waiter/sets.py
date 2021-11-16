@@ -48,8 +48,9 @@ def categorize_dish(dish_name, dish_ingredients):
     All dishes will "fit" into one of the categories imported from `categories.py`
     (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
     """
-
-    pass
+    for category in [VEGAN, VEGETARIAN, PALEO, KETO, OMNIVORE]:
+        if category.issuperset(dish_ingredients):
+            return f"{dish_name} {category}"
 
 
 def tag_special_ingredients(dish):
@@ -62,8 +63,9 @@ def tag_special_ingredients(dish):
     For the purposes of this exercise, all allergens or special ingredients that need to be tracked are in the
     SPECIAL_INGREDIENTS constant imported from `categories.py`.
     """
-
-    pass
+    dish_name, dish_ingredients = dish
+    special_ingredients = {ingredient for ingredient in dish_ingredients if ingredient in SPECIAL_INGREDIENTS}
+    return dish_name, special_ingredients
 
 
 def compile_ingredients(dishes):
