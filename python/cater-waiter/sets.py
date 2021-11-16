@@ -94,7 +94,6 @@ def separate_appetizers(dishes, appetizers):
     """
     dish_names = set()
     dish_names = dish_names.union(dishes, appetizers)
-    dish_names.difference_update()
     return dish_names
 
 
