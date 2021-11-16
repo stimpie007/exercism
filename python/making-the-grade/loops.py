@@ -11,8 +11,7 @@ def count_failed_students(student_scores):
     :param student_scores: list of integer student scores.
     :return: integer count of student scores at or below 40.
     """
-    # Couldn't figure out .count() to use a condition
-    return len([score for score in student_scores if score <= 40])
+    return sum([score <= 40 for score in student_scores])
 
 
 def above_threshold(student_scores, threshold):
@@ -29,9 +28,8 @@ def letter_grades(highest):
     :param highest: integer of highest exam score.
     :return: list of integer score thresholds for each F-A letter grades.
     """
-    grades = range(40, highest)
-    steps = int(len(grades) / 4)
-    return [grade for grade in grades[1::steps]]
+    threshold = 41
+    return list(range(threshold, highest, round((highest - threshold) / 4)))
 
 
 def student_ranking(student_scores, student_names):
