@@ -4,7 +4,7 @@ def create_inventory(items):
     :param items: list - list of items to create an inventory from.
     :return:  dict - the inventory dictionary.
     """
-    return {item: items.count(item) for item in items}
+    return add_items({}, items)
 
 
 def add_items(inventory, items):
@@ -15,10 +15,7 @@ def add_items(inventory, items):
     :return:  dict - the inventory dictionary update with the new items.
     """
     for item in items:
-        if item in inventory:
-            inventory[item] += 1
-        else:
-            inventory[item] = 1
+        inventory[item] = inventory.get(item, 0) + 1
 
     return inventory
 
@@ -33,8 +30,6 @@ def decrement_items(inventory, items):
     for item in items:
         if item in inventory and 0 < inventory[item]:
             inventory[item] -= 1
-        else:
-            inventory[item] = 0
 
     return inventory
 
