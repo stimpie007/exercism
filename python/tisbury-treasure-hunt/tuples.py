@@ -23,8 +23,7 @@ def compare_records(azara_record, rui_record):
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
     :return: bool - True if coordinates match, False otherwise.
     """
-
-    pass
+    return azara_record[1] == ''.join(rui_record[1])
 
 
 def create_record(azara_record, rui_record):
