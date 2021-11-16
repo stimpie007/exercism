@@ -23,7 +23,7 @@ def compare_records(azara_record, rui_record):
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
     :return: bool - True if coordinates match, False otherwise.
     """
-    return azara_record[1] == ''.join(rui_record[1])
+    return get_coordinate(azara_record) == ''.join(get_coordinate(rui_record))
 
 
 def create_record(azara_record, rui_record):
@@ -36,12 +36,18 @@ def create_record(azara_record, rui_record):
     return azara_record + rui_record if compare_records(azara_record, rui_record) else "not a match"
 
 
-
 def clean_up(combined_record_group):
     """
 
     :param combined_record_group: tuple of tuples - everything from both participants.
     :return: string of tuples separated by newlines - everything "cleaned". Excess coordinates and information removed.
     """
+    # ('Brass Spyglass', '4B', 'Abandoned Lighthouse', ('4', 'B'), 'Blue')
+    # ('Brass Spyglass', 'Abandoned Lighthouse', ('4', 'B'), 'Blue')\n
+    clean_records = ''
 
-    pass
+    for record in combined_record_group:
+        record = record[:1] + record[2:]
+        clean_records += ''.join(str(record)) + '\n'
+
+    return clean_records
