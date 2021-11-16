@@ -42,10 +42,4 @@ def clean_up(combined_record_group):
     :param combined_record_group: tuple of tuples - everything from both participants.
     :return: string of tuples separated by newlines - everything "cleaned". Excess coordinates and information removed.
     """
-    clean_records = ''
-
-    for record in combined_record_group:
-        record = record[:1] + record[2:]
-        clean_records += ''.join(str(record)) + '\n'
-
-    return clean_records
+    return '\n'.join(str(record[:1] + record[2:]) for record in combined_record_group) + '\n'
