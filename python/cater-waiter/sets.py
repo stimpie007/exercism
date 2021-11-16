@@ -45,10 +45,10 @@ def categorize_dish(dish_name, dish_ingredients):
     (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
     """
     for category, name in ((VEGAN, "VEGAN"),
-                    (VEGETARIAN, "VEGETARIAN"),
-                    (PALEO, "PALEO"),
-                    (KETO, "KETO"),
-                    (OMNIVORE, "OMNIVORE")):
+                           (VEGETARIAN, "VEGETARIAN"),
+                           (PALEO, "PALEO"),
+                           (KETO, "KETO"),
+                           (OMNIVORE, "OMNIVORE")):
         if set(dish_ingredients) <= set(category):
             return f"{dish_name}: {name}"
 
