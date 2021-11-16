@@ -14,8 +14,10 @@ def add_items(inventory, items):
     :param items: list - list of items to update the inventory with.
     :return:  dict - the inventory dictionary update with the new items.
     """
+    for item in items:
+        inventory[item] += 1
 
-    pass
+    return inventory
 
 
 def decrement_items(inventory, items):
@@ -25,8 +27,10 @@ def decrement_items(inventory, items):
     :param items: list - list of items to decrement from the inventory.
     :return:  dict - updated inventory dictionary with items decremented.
     """
+    for item in items:
+        inventory[item] -= 1
 
-    pass
+    return inventory
 
 
 def remove_item(inventory, item):
