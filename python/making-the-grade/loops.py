@@ -29,8 +29,9 @@ def letter_grades(highest):
     :param highest: integer of highest exam score.
     :return: list of integer score thresholds for each F-A letter grades.
     """
-
-    pass
+    grades = range(40, highest)
+    steps = int(len(grades) / 4)
+    return [grade for grade in grades[1::steps]]
 
 
 def student_ranking(student_scores, student_names):
