@@ -33,8 +33,8 @@ def create_record(azara_record, rui_record):
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
     :return:  tuple - combined record, or "not a match" if the records are incompatible.
     """
+    return azara_record + rui_record if compare_records(azara_record, rui_record) else "not a match"
 
-    pass
 
 
 def clean_up(combined_record_group):
