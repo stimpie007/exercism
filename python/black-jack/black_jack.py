@@ -11,8 +11,12 @@ def value_of_card(card):
     :param card: str - given card.
     :return: int - value of a given card (J, Q, K = 10, 'A' = 1) numerical value otherwise.
     """
+    if card in ['J', 'Q', 'K']:
+        return 10
+    elif card == 'A':
+        return 1
 
-    pass
+    return int(card)
 
 def higher_card(card_one, card_two):
     """Determine which card has a higher value in the hand.
