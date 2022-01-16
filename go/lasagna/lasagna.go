@@ -4,7 +4,7 @@ package lasagna
 
 // RemainingOvenTime returns the remaining minutes based on the `actual` minutes already in the oven.
 func RemainingOvenTime(actualMinutesInOven int) int {
-	panic("RemainingOvenTime not implemented")
+	return 40 - actualMinutesInOven
 }
 
 // PreparationTime calculates the time needed to prepare the lasagna based on the amount of layers.
