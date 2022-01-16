@@ -49,14 +49,15 @@ def is_blackjack(card_one, card_two):
     :param card_one, card_two: str - cards dealt.  J, Q, K = 10, 'A' = 11, all others are numerical value.
     :return: bool - if the hand is a blackjack (two cards worth 21).
     """
-    if card_one is 'A':
-        ace = value_of_ace(card_one, card_two)
-        return ace + value_of_card(card_two) == 21
-    if card_two is 'A':
-        ace = value_of_ace(card_one, card_two)
-        return value_of_card(card_one) + ace == 21
-    
-    return value_of_card(card_one) + value_of_card(card_two) == 21
+    res = 0
+    for card in card_one, card_two:
+        if card in ('K', 'Q', 'J'):
+            res += 10
+        elif card == 'A':
+            res += 11
+        else:
+            res += int(card)
+    return res == 21
     
 
 
