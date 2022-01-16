@@ -24,8 +24,15 @@ def higher_card(card_one, card_two):
     :param card_one, card_two: str - cards dealt.  J, Q, K = 10, 'A' = 1, all others are numerical value.
     :return: higher value card - str. Tuple of both cards if they are of equal value.
     """
+    
+    if value_of_card(card_one) == value_of_card(card_two):
+        return (card_one, card_two)
 
-    pass
+    if value_of_card(card_one) > value_of_card(card_two):
+        return card_one
+    else:
+        return card_two
+    
 
 
 def value_of_ace(card_one, card_two):
@@ -34,8 +41,7 @@ def value_of_ace(card_one, card_two):
     :param card_one, card_two: str - card (J, Q, K == 10, numerical value otherwise)
     :return: int - value of the upcoming ace card (either 1 or 11).
     """
-
-    pass
+    return 11 if value_of_card(card_one) + value_of_card(card_two) + 10 <= 21 else 1
 
 
 def is_blackjack(card_one, card_two):
@@ -44,8 +50,15 @@ def is_blackjack(card_one, card_two):
     :param card_one, card_two: str - cards dealt.  J, Q, K = 10, 'A' = 11, all others are numerical value.
     :return: bool - if the hand is a blackjack (two cards worth 21).
     """
-
-    pass
+    if card_one is 'A':
+        ace = value_of_ace(card_one, card_two)
+        return ace + value_of_card(card_two) == 21
+    if card_two is 'A':
+        ace = value_of_ace(card_one, card_two)
+        return value_of_card(card_one) + ace == 21
+    
+    return value_of_card(card_one) + value_of_card(card_two) == 21
+    
 
 
 def can_split_pairs(card_one, card_two):
@@ -54,8 +67,7 @@ def can_split_pairs(card_one, card_two):
     :param card_one, card_two: str - cards in hand.
     :return: bool - if the hand can be split into two pairs (i.e. cards are of the same value).
     """
-
-    pass
+    return value_of_card(card_one) == value_of_card(card_two)
 
 
 def can_double_down(card_one, card_two):
@@ -64,5 +76,4 @@ def can_double_down(card_one, card_two):
     :param card_one, card_two: str - first and second cards in hand.
     :return: bool - if the hand can be doubled down (i.e. totals 9, 10 or 11 points).
     """
-
-    pass
+    return value_of_card(card_one) + value_of_card(card_two) in [9, 10, 11]
