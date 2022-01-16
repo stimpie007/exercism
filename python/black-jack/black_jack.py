@@ -25,13 +25,12 @@ def higher_card(card_one, card_two):
     :return: higher value card - str. Tuple of both cards if they are of equal value.
     """
     
-    if value_of_card(card_one) == value_of_card(card_two):
-        return (card_one, card_two)
-
     if value_of_card(card_one) > value_of_card(card_two):
         return card_one
-    else:
+    elif value_of_card(card_one) < value_of_card(card_two):
         return card_two
+    else:
+        return card_one, card_two
     
 
 
