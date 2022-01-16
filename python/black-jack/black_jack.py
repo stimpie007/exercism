@@ -11,7 +11,7 @@ def value_of_card(card):
     :param card: str - given card.
     :return: int - value of a given card (J, Q, K = 10, 'A' = 1) numerical value otherwise.
     """
-    if card in ['J', 'Q', 'K']:
+    if card in "JQK":
         return 10
     elif card == 'A':
         return 1
@@ -38,8 +38,8 @@ def higher_card(card_one, card_two):
 def value_of_ace(card_one, card_two):
     """Calculate the most advantageous value for the ace card.
 
-    :param card_one, card_two: str - card (J, Q, K == 10, numerical value otherwise)
-    :return: int - value of the upcoming ace card (either 1 or 11).
+    :param card_one, card_two: str - card (J, Q, K == 10, numerical value otherwise) 
+    :return: int - value of the upcoming ace card (either 1 or 11)..
     """
     return 11 if value_of_card(card_one) + value_of_card(card_two) + 10 <= 21 else 1
 
