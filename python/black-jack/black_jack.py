@@ -38,7 +38,7 @@ def value_of_ace(card_one, card_two):
     """Calculate the most advantageous value for the ace card.
 
     :param card_one, card_two: str - card (J, Q, K == 10, numerical value otherwise) 
-    :return: int - value of the upcoming ace card (either 1 or 11)..
+    :return: int - value of the upcoming ace card (either 1 or 11).
     """
     return 1 if value_of_card(card_one) + value_of_card(card_two) + 11 > 21 else 11
 
@@ -58,7 +58,6 @@ def is_blackjack(card_one, card_two):
         else:
             res += int(card)
     return res == 21
-    
 
 
 def can_split_pairs(card_one, card_two):
@@ -76,4 +75,4 @@ def can_double_down(card_one, card_two):
     :param card_one, card_two: str - first and second cards in hand.
     :return: bool - if the hand can be doubled down (i.e. totals 9, 10 or 11 points).
     """
-    return value_of_card(card_one) + value_of_card(card_two) in [9, 10, 11]
+    return value_of_card(card_one) + value_of_card(card_two) in (9, 10, 11)
