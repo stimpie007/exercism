@@ -40,7 +40,7 @@ def value_of_ace(card_one, card_two):
     :param card_one, card_two: str - card (J, Q, K == 10, numerical value otherwise) 
     :return: int - value of the upcoming ace card (either 1 or 11)..
     """
-    return 11 if value_of_card(card_one) + value_of_card(card_two) + 10 <= 21 else 1
+    return 1 if value_of_card(card_one) + value_of_card(card_two) + 11 > 21 else 11
 
 
 def is_blackjack(card_one, card_two):
