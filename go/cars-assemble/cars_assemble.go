@@ -14,7 +14,7 @@ func CalculateWorkingCarsPerMinute(productionRate int, successRate float64) int 
 
 // CalculateCost works out the cost of producing the given number of cars
 func CalculateCost(carsCount int) uint {
-	full_priced_cars := (carsCount % 10)
-	pack_of_ten := (carsCount - full_priced_cars)
-	return uint(full_priced_cars*10000) + uint(pack_of_ten*9500)
+	fullPricedCars := (carsCount % 10)
+	tenpack := (carsCount - fullPricedCars)
+	return uint(fullPricedCars*10000 + tenpack*9500)
 }
