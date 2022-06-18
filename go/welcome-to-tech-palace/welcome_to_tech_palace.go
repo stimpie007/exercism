@@ -1,25 +1,24 @@
 package techpalace
 
 import (
-	"fmt"
 	"strings"
+	"unicode"
 )
 
 // WelcomeMessage returns a welcome message for the customer.
 func WelcomeMessage(customer string) string {
-	return fmt.Sprintf("Welcome to the Tech Palace, %s", strings.ToUpper(customer))
+	customer = strings.ToUpper(customer)
+	return "Welcome to the Tech Palace, " + customer
 }
 
 // AddBorder adds a border to a welcome message.
 func AddBorder(welcomeMsg string, numStarsPerLine int) string {
-	stars := strings.Repeat("*", numStarsPerLine) + "\n" + welcomeMsg + "\n" + strings.Repeat("*", numStarsPerLine)
-	return fmt.Sprint(stars)
+	border := strings.Repeat("*", numStarsPerLine)
+	return border + "\n" + welcomeMsg + "\n" + border
 }
 
 // CleanupMessage cleans up an old marketing message.
 func CleanupMessage(oldMsg string) string {
-	message := strings.Split(oldMsg, "\n")[1]
-	message = strings.ReplaceAll(message, "*", "")
-	message = strings.TrimSpace(message)
-	return fmt.Sprint(message)
+	oldMsg = strings.ReplaceAll(oldMsg, "*", "")
+	return strings.TrimFunc(oldMsg, unicode.IsSpace)
 }
