@@ -8,6 +8,11 @@ import (
 
 // NeedsLicense determines whether a license is needed to drive a type of vehicle. Only "car" and "truck" require a license.
 func NeedsLicense(kind string) bool {
+	// if strings.Contains(kind, "car") && strings.Contains(kind, "truck") {
+	// 	return true
+	// } else {
+	// 	return false
+	// }
 	return !strings.Contains(kind, "not")
 }
 
