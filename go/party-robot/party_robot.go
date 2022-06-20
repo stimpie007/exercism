@@ -1,8 +1,10 @@
 package partyrobot
 
+import "fmt"
+
 // Welcome greets a person by name.
 func Welcome(name string) string {
-	panic("Please implement the Welcome function")
+	return fmt.Sprintf("Welcome to my party, %s!", name)
 }
 
 // HappyBirthday wishes happy birthday to the birthday person and exclaims their age.
