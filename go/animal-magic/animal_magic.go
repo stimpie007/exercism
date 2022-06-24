@@ -1,8 +1,13 @@
 package chance
 
+import (
+	"math/rand"
+	"time"
+)
+
 // SeedWithTime seeds math/rand with the current computer time
 func SeedWithTime() {
-	panic("Please implement the SeedWithTime function")
+	rand.Seed(int64(time.Now().UTC().UnixNano()))
 }
 
 // RollADie returns a random int d with 1 <= d <= 20
