@@ -8,7 +8,7 @@ import (
 
 // SeedWithTime seeds math/rand with the current computer time
 func SeedWithTime() {
-	rand.Seed(int64(time.Now().UTC().UnixNano()))
+	rand.Seed(int64(time.Now().UnixNano()))
 }
 
 // RollADie returns a random int d with 1 <= d <= 20
