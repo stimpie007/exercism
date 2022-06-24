@@ -1,6 +1,5 @@
 package speed
 
-// TODO: define the 'Car' type struct
 type Car struct {
 	speed        int
 	batteryDrain int
@@ -13,7 +12,6 @@ func NewCar(speed, batteryDrain int) Car {
 	return Car{speed, batteryDrain, 100, 0}
 }
 
-// TODO: define the 'Track' type struct
 type Track struct {
 	distance int
 }
