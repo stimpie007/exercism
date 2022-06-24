@@ -10,7 +10,7 @@ type Car struct {
 
 // NewCar creates a new remote controlled car with full battery and given specifications.
 func NewCar(speed, batteryDrain int) Car {
-	panic("Please implement the NewCar function")
+	return Car{speed, batteryDrain, 100, 0}
 }
 
 // TODO: define the 'Track' type struct
