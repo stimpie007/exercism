@@ -33,7 +33,7 @@ func Drive(car Car) Car {
 	// 	distance:     0,
 	// }
 	if car.batteryDrain < car.battery {
-		car.battery = car.battery - car.batteryDrain
+		car.battery -= car.batteryDrain
 		car.distance += car.speed
 	}
 	return car
