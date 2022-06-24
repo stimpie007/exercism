@@ -26,7 +26,17 @@ func NewTrack(distance int) Track {
 // Drive drives the car one time. If there is not enough battery to drive one more time,
 // the car will not move.
 func Drive(car Car) Car {
-	panic("Please implement the Drive function")
+	// Car{
+	// 	speed:        5,
+	// 	batteryDrain: 7,
+	// 	battery:      3,
+	// 	distance:     0,
+	// }
+	if car.batteryDrain < car.battery {
+		car.battery = car.battery - car.batteryDrain
+		car.distance += car.speed
+	}
+	return car
 }
 
 // CanFinish checks if a car is able to finish a certain track.
