@@ -5,8 +5,8 @@ import (
 )
 
 func PreparationTime(layers []string, prepTime int) int {
-	if prepTime == 0 {
-		return 2
+	if prepTime <= 0 {
+		prepTime = 2
 	}
 	return len(layers) * prepTime
 }
