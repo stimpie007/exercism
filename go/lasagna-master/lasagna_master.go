@@ -1,6 +1,8 @@
 package lasagna
 
-import "strings"
+import (
+	"strings"
+)
 
 func PreparationTime(layers []string, prepTime int) int {
 	if prepTime == 0 {
@@ -21,8 +23,9 @@ func AddSecretIngredient(friendsList, myList []string) {
 }
 
 // TODO: define the 'ScaleRecipe()' function
-func ScaleRecipe(quantities []float64, portion int) {
+func ScaleRecipe(quantities []float64, portion int) []float64 {
 	for i := range quantities {
 		quantities[i] *= (float64(portion) / 2)
 	}
+	return quantities
 }
