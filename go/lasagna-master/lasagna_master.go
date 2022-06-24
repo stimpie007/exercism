@@ -19,7 +19,7 @@ func Quantities(layers []string) (int, float64) {
 }
 
 func AddSecretIngredient(friendsList, myList []string) {
-	myList = append(myList, friendsList...)
+	myList[len(myList)-1] = friendsList[len(friendsList)-1]
 }
 
 // TODO: define the 'ScaleRecipe()' function
