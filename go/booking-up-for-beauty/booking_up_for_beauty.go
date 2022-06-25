@@ -1,6 +1,7 @@
 package booking
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -24,7 +25,8 @@ func IsAfternoonAppointment(date string) bool {
 
 // Description returns a formatted string of the appointment time
 func Description(date string) string {
-	panic("Please implement the Description function")
+	d := Schedule(date)
+	return fmt.Sprintf("You have an appointment on %s, %s %d, %d, at %d:%d.", d.Weekday(), d.Month(), d.Day(), d.Year(), d.Hour(), d.Minute())
 }
 
 // AnniversaryDate returns a Time with this year's anniversary
