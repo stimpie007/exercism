@@ -2,7 +2,22 @@ package interest
 
 // InterestRate returns the interest rate for the provided balance.
 func InterestRate(balance float64) float32 {
-	panic("Please implement the InterestRate function")
+	// 	- 3.213% for a balance less than `0` dollars (balance gets more negative).
+	// - 0.5% for a balance greater than or equal to `0` dollars, and less than `1000` dollars.
+	// - 1.621% for a balance greater than or equal to `1000` dollars, and less than `5000` dollars.
+	// - 2.475% for a balance greater than or equal to `5000` dollars.
+	switch {
+	case balance < 0:
+		return 3.213
+	case 0 <= balance && balance < 1000:
+		return 0.5
+	case 1000 <= balance && balance < 5000:
+		return 1.621
+	case 5000 <= balance:
+		return 2.475
+	default:
+		panic(balance)
+	}
 }
 
 // Interest calculates the interest for the provided balance.
