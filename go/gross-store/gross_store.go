@@ -29,15 +29,14 @@ func AddItem(bill, units map[string]int, item, unit string) bool {
 // RemoveItem removes an item from customer bill.
 func RemoveItem(bill, units map[string]int, item, unit string) bool {
 	value, exists := units[unit]
-	if !exists {
-		return false
-	}
-	if bill[item] >= value {
-		bill[item] -= value
-		if bill[item] == 0 {
-			delete(bill, item)
+	if exists {
+		if bill[item] >= value {
+			bill[item] -= value
+			if bill[item] == 0 {
+				delete(bill, item)
+			}
+			return true
 		}
-		return true
 	}
 	return false
 }
