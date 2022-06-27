@@ -34,5 +34,6 @@ func Replace(log string, oldRune, newRune rune) string {
 // WithinLimit determines whether or not the number of characters in log is
 // within the limit.
 func WithinLimit(log string, limit int) bool {
-	panic("Please implement the WithinLimit() function")
+	runes := []rune(log)
+	return len(runes) <= limit
 }
