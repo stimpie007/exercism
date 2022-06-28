@@ -56,6 +56,9 @@ type Speed struct {
 }
 
 // Add a String method to Speed
+func (s *Speed) String() string {
+	return fmt.Sprintf("%d %s", s.magnitude, s.unit.String())
+}
 
 type MeteorologyData struct {
 	location      string
