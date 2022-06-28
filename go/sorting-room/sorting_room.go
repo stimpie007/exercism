@@ -1,8 +1,13 @@
 package sorting
 
+import (
+	"fmt"
+	"strconv"
+)
+
 // DescribeNumber should return a string describing the number.
 func DescribeNumber(f float64) string {
-	panic("Please implement DescribeNumber")
+	return fmt.Sprintf("This is the number %.1f", f)
 }
 
 type NumberBox interface {
@@ -11,7 +16,7 @@ type NumberBox interface {
 
 // DescribeNumberBox should return a string describing the NumberBox.
 func DescribeNumberBox(nb NumberBox) string {
-	panic("Please implement DescribeNumberBox")
+	return fmt.Sprintf("This is a box containing the number %.1f", float64(nb.Number()))
 }
 
 type FancyNumber struct {
@@ -29,7 +34,13 @@ type FancyNumberBox interface {
 // ExtractFancyNumber should return the integer value for a FancyNumber
 // and 0 if any other FancyNumberBox is supplied.
 func ExtractFancyNumber(fnb FancyNumberBox) int {
-	panic("Please implement ExtractFancyNumber")
+	switch fnb := fnb.(type) {
+	case FancyNumberBox:
+		i, _ := strconv.Atoi(fnb.Value())
+		return i
+	default:
+		return 0
+	}
 }
 
 // DescribeFancyNumberBox should return a string describing the FancyNumberBox.
