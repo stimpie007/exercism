@@ -1,5 +1,7 @@
 package meteorology
 
+import "fmt"
+
 type TemperatureUnit int
 
 const (
@@ -15,7 +17,7 @@ func (t *TemperatureUnit) String() string {
 	case Fahrenheit:
 		return "°F"
 	default:
-		return "Yea na"
+		return "Not an implemented unit"
 	}
 }
 
@@ -26,7 +28,7 @@ type Temperature struct {
 
 // Add a String method to the Temperature type
 func (t *Temperature) String() string {
-	return t.unit.String()
+	return fmt.Sprintf("%d %s", t.degree, t.unit.String())
 }
 
 type SpeedUnit int
