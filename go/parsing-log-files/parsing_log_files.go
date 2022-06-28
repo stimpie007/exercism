@@ -33,13 +33,11 @@ func RemoveEndOfLineText(text string) string {
 
 func TagWithUserName(lines []string) []string {
 	re := regexp.MustCompile(`User\s+(\w+)`)
-	ret := []string{}
-	for _, line := range lines {
-		founds := re.FindStringSubmatch(line)
-		if founds != nil {
-			line = fmt.Sprintf("[USR] %s %s", founds[1], line)
+	for i, line := range lines {
+		found := re.FindStringSubmatch(line)
+		if found != nil {
+			lines[i] = fmt.Sprintf("[USR] %s %s", found[1], line)
 		}
-		ret = append(ret, line)
 	}
-	return ret
+	return lines
 }
