@@ -18,11 +18,13 @@ type DaysPeriod struct {
 // Filter returns the records for which the predicate function returns true.
 func Filter(in []Record, predicate func(Record) bool) []Record {
 	var out []Record
+
 	for _, r := range in {
 		if predicate(r) {
 			out = append(out, r)
 		}
 	}
+
 	return out
 }
 
@@ -48,8 +50,9 @@ func ByCategory(c string) func(Record) bool {
 func TotalByPeriod(in []Record, p DaysPeriod) float64 {
 	periodExpenses := Filter(in, ByDaysPeriod(p))
 	var total float64
-	for _, rec := range periodExpenses {
-		total += rec.Amount
+
+	for _, r := range periodExpenses {
+		total += r.Amount
 	}
 	return total
 }
@@ -60,8 +63,10 @@ func TotalByPeriod(in []Record, p DaysPeriod) float64 {
 // to the given category, regardless of period of time.
 func CategoryExpenses(in []Record, p DaysPeriod, c string) (float64, error) {
 	categoryExpenses := Filter(in, ByCategory(c))
+
 	if len(categoryExpenses) == 0 {
 		return 0, errors.New("unknown category")
 	}
+
 	return TotalByPeriod(categoryExpenses, p), nil
 }
