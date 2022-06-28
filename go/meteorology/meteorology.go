@@ -9,7 +9,6 @@ const (
 	Fahrenheit TemperatureUnit = 1
 )
 
-// Add a String method to the TemperatureUnit type
 func (t *TemperatureUnit) String() string {
 	switch *t {
 	case Celsius:
@@ -26,7 +25,6 @@ type Temperature struct {
 	unit   TemperatureUnit
 }
 
-// Add a String method to the Temperature type
 func (t *Temperature) String() string {
 	return fmt.Sprintf("%d %s", t.degree, t.unit.String())
 }
@@ -38,7 +36,6 @@ const (
 	MilesPerHour SpeedUnit = 1
 )
 
-// Add a String method to SpeedUnit
 func (s *SpeedUnit) String() string {
 	switch *s {
 	case KmPerHour:
@@ -55,7 +52,6 @@ type Speed struct {
 	unit      SpeedUnit
 }
 
-// Add a String method to Speed
 func (s *Speed) String() string {
 	return fmt.Sprintf("%d %s", s.magnitude, s.unit.String())
 }
@@ -68,7 +64,6 @@ type MeteorologyData struct {
 	humidity      int
 }
 
-// Add a String method to MeteorologyData
 func (m *MeteorologyData) String() string {
 	return fmt.Sprintf(
 		"%s: %d %s, Wind %s at %d %s, %d%% Humidity",
