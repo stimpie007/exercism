@@ -11,12 +11,12 @@ type Resident struct {
 // NewResident registers a new resident in this city.
 func NewResident(name string, age int, address map[string]string) *Resident {
 	return &Resident{Name: name, Age: age, Address: address}
-	// => &{Matthew Sanabria 29 map[street:Main St.]}
 }
 
 // HasRequiredInfo determines if a given resident has all of the required information.
 func (r *Resident) HasRequiredInfo() bool {
-	panic("Please implement HasRequiredInfo.")
+	// => &{Matthew Sanabria 29 map[street:Main St.]}
+	return r.Name != "" && r.Age != 0 && r.Address != nil
 }
 
 // Delete deletes a resident's information.
