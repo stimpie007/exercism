@@ -9,7 +9,14 @@ const (
 
 // Add a String method to the TemperatureUnit type
 func (t *TemperatureUnit) String() string {
-	return "°F"
+	switch *t {
+	case Celsius:
+		return "°C"
+	case Fahrenheit:
+		return "°F"
+	default:
+		return "Yea na"
+	}
 }
 
 type Temperature struct {
