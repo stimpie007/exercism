@@ -42,7 +42,7 @@ const (
 func (s *SpeedUnit) String() string {
 	switch *s {
 	case KmPerHour:
-		return "kmh"
+		return "km/h"
 	case MilesPerHour:
 		return "mph"
 	default:
