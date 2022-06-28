@@ -8,6 +8,9 @@ const (
 )
 
 // Add a String method to the TemperatureUnit type
+func (t *TemperatureUnit) String() string {
+	return "°F"
+}
 
 type Temperature struct {
 	degree int
