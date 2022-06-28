@@ -18,6 +18,9 @@ type Temperature struct {
 }
 
 // Add a String method to the Temperature type
+func (t *Temperature) String() string {
+	return t.unit.String()
+}
 
 type SpeedUnit int
 
