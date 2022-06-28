@@ -39,6 +39,16 @@ const (
 )
 
 // Add a String method to SpeedUnit
+func (s *SpeedUnit) String() string {
+	switch *s {
+	case KmPerHour:
+		return "kmh"
+	case MilesPerHour:
+		return "mph"
+	default:
+		return "Not an implemented unit"
+	}
+}
 
 type Speed struct {
 	magnitude int
