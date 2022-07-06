@@ -44,4 +44,20 @@ class Alien:
 
     def total_aliens_created(self):
         return self.total_aliens_created
+
 #TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
+def new_aliens_collection(alien_start_positions):
+    for alien in alien_start_positions:
+        alien = Alien(alien[0], alien[1])
+
+"""
+```python
+>>> alien_start_positions = [(4, 7), (-1, 0)]
+>>> aliens = new_aliens_collection(alien_start_positions)
+...
+>>> for alien in aliens:
+    	print(alien.x_coordinate, alien.y_coordinate)
+(4, 7)
+(-1, 0)
+```
+"""
