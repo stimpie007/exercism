@@ -22,7 +22,9 @@ class Alien:
         self.x_coordinate = x
         self.y_coordinate = y
         self.health = 3
-    pass
+    
+    def hit():
+        self.health -= 1
 
 
 #TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
