@@ -25,13 +25,13 @@ class Alien:
         self.x_coordinate = x
         self.y_coordinate = y
         self.health = 3
-    
+
     def hit(self):
         self.health -= 1
 
     def is_alive(self):
-        return (self.health > 0)
-    
+        return self.health > 0
+
     def teleport(self, x, y):
         self.x_coordinate = x
         self.y_coordinate = y
