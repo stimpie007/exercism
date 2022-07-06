@@ -18,9 +18,10 @@ class Alien:
     teleport(new_x_coordinate, new_y_coordinate): Move Alien object to new coordinates.
     collision_detection(other): Implementation TBD.
     """
-    _count = 0
+    total_aliens_created = 0
 
     def __init__(self, x, y):
+        Alien.total_aliens_created += 1
         self.x_coordinate = x
         self.y_coordinate = y
         self.health = 3
@@ -42,6 +43,5 @@ class Alien:
         pass
 
     def total_aliens_created(self):
-        Alien._count += 1
-        return self._count
+        return self.total_aliens_created
 #TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
