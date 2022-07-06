@@ -23,8 +23,11 @@ class Alien:
         self.y_coordinate = y
         self.health = 3
     
-    def hit():
+    def hit(self):
         self.health -= 1
+
+    def is_alive(self):
+        return True if self.health > 0 else False
 
 
 #TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
