@@ -42,19 +42,6 @@ class Alien:
         """
         pass
 
-#TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
-def new_aliens_collection(alien_start_positions):
-    for alien in alien_start_positions:
-        alien = Alien(alien[0], alien[1])
 
-"""
-```python
->>> alien_start_positions = [(4, 7), (-1, 0)]
->>> aliens = new_aliens_collection(alien_start_positions)
-...
->>> for alien in aliens:
-    	print(alien.x_coordinate, alien.y_coordinate)
-(4, 7)
-(-1, 0)
-```
-"""
+def new_aliens_collection(positions):
+    return [Alien(x, y) for (x, y) in positions]
