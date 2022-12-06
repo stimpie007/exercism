@@ -1,3 +1,5 @@
+from typing import List
+
 COLORS = {
     "black": 0,
     "brown": 1,
@@ -12,9 +14,13 @@ COLORS = {
 }
 
 
-def label(colors):
-    # (["blue", "grey", "brown"]), "680 ohms")
+def label(colors: List[str]) -> str:
+    """
+    Return the number of color code
 
+    :param colors: List of strings
+    :return: str
+    """
     color_one = COLORS.get(colors[0])
     color_two = COLORS.get(colors[1])
     color_three = pow(10, COLORS.get(colors[2]))
