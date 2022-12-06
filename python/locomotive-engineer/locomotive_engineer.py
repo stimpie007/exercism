@@ -19,7 +19,8 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
     :parm missing_wagons: list - the list of missing wagons.
     :return: list - list of wagons.
     """
-    pass
+    one, two, locomotive, *rest = each_wagons_id
+    return [locomotive, *missing_wagons, *rest, one, two]
 
 
 # TODO: define the 'add_missing_stops()' function
