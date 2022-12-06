@@ -25,7 +25,4 @@ def label(colors: List[str]) -> str:
 
     color_code = int(str(color_one) + str(color_two)) * color_three
 
-    if str(color_code)[-3:] == '000':
-        return str(color_code)[:-3] + " kiloohms"
-    else:
-        return str(color_code) + " ohms"
+    return f"{str(color_code)[:-3]} kiloohms" if color_code % 1e3 == 0 else f"{color_code} ohms"
