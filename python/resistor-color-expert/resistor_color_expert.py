@@ -9,6 +9,7 @@
 # - Violet: 7   Silver - 10%
 # - Grey: 8
 # - White: 9
+import enum
 
 ENCODING = {
     "black": 0,
@@ -33,7 +34,23 @@ TOLERANCES = {
     "gold": 5,
     "silver": 10
 }
-colors = ["orange", "orange", "black", "red"]
+
+
+class SIZE_UNIT(enum.Enum):
+    ohms = 1
+    kiloohms = 2
+    megaohms = 3
+
+
+def convert_unit(size_in_bytes, unit):
+    """ Convert the size from bytes to other units like kiloohms or megaohms"""
+    if unit == SIZE_UNIT.kiloohms:
+        return size_in_bytes / 1000
+    elif unit == SIZE_UNIT.megaohms:
+        return size_in_bytes / (1000 * 1000)
+    else:
+        return size_in_bytes
+
 
 def resistor_label(colors):
     # (["orange", "orange", "black", "red"]), "33 ohms ±2%")
@@ -43,7 +60,8 @@ def resistor_label(colors):
     band = str(color1) + str(color2)
 
     multiplier = ENCODING[colors[2]] + len(band)
+    ohms = convert_unit(band.ljust(multiplier, '0'))
 
     tolerance = TOLERANCES[colors[3]]
 
-    return print(f"{band.ljust(multiplier, '0')} ohms ±{tolerance}%")
+    return f"{band} {ohms} ±{tolerance}%"
