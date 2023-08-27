@@ -1,29 +1,6 @@
-# Encoding      Tolerance
-# - Black: 0    Grey - 0.05%
-# - Brown: 1    Violet - 0.1%
-# - Red: 2      Blue - 0.25%
-# - Orange: 3   Green - 0.5%
-# - Yellow: 4   Brown - 1%
-# - Green: 5    Red - 2%
-# - Blue: 6     Gold - 5%
-# - Violet: 7   Silver - 10%
-# - Grey: 8
-# - White: 9
-import enum
+"""Parse resistor colors."""
 
-ENCODING = {
-    "black": 0,
-    "brown": 1,
-    "red": 2,
-    "orange": 3,
-    "yellow": 4,
-    "green": 5,
-    "blue": 6,
-    "violet": 7,
-    "grey": 8,
-    "white": 9
-}
-
+COLORS = "black brown red orange yellow green blue violet grey white".split()
 TOLERANCES = {
     "grey": 0.05,
     "violet": 0.1,
@@ -32,36 +9,34 @@ TOLERANCES = {
     "brown": 1,
     "red": 2,
     "gold": 5,
-    "silver": 10
+    "silver": 10,
 }
+UNITS = ["ohms", "kiloohms", "megaohms"]
 
 
-class SIZE_UNIT(enum.Enum):
-    ohms = 1
-    kiloohms = 2
-    megaohms = 3
-
-
-def convert_unit(size_in_bytes, unit):
-    """ Convert the size from bytes to other units like kiloohms or megaohms"""
-    if unit == SIZE_UNIT.kiloohms:
-        return size_in_bytes / 1000
-    elif unit == SIZE_UNIT.megaohms:
-        return size_in_bytes / (1000 * 1000)
+def resistor_label(colors: list[str]) -> str:
+    """Return the value of a resistor color."""
+    # Unpack or set up variables.
+    if len(colors) > 3:
+        *values, multiplier, tolerance = colors
     else:
-        return size_in_bytes
+        values, multiplier, tolerance = colors, COLORS[0], None
 
+    # Add the bands, apply the multiplier.
+    val = 0.0
+    for value in values:
+        val = val * 10 + COLORS.index(value)
+    val *= 10 ** COLORS.index(multiplier)
 
-def resistor_label(colors):
-    # (["orange", "orange", "black", "red"]), "33 ohms ±2%")
-    # ["blue", "grey", "brown", "violet"]), "680 ohms ±0.1%")
-    color1 = ENCODING[colors[0]]
-    color2 = ENCODING[colors[1]]
-    band = str(color1) + str(color2)
+    # Shift numbers over to get the proper prefix.
+    power = 0
+    while val > 1000:
+        val /= 1000
+        power += 1
 
-    multiplier = ENCODING[colors[2]] + len(band)
-    ohms = convert_unit(band.ljust(multiplier, '0'))
+    # Add a tolerance, if one is supplied.
+    result = f"{val:n} {UNITS[power]}"
+    if tolerance:
+        result += f" ±{TOLERANCES[tolerance]}%"
 
-    tolerance = TOLERANCES[colors[3]]
-
-    return f"{band} {ohms} ±{tolerance}%"
+    return result
