@@ -31,6 +31,7 @@ def generate_seats(number):
     return (f'{str(row)}{next(letters)}' for
             seat in seats if (row := seat // 4 + 1) != 13)
 
+
 def assign_seats(passengers):
     """Assign seats to passengers.
 
@@ -39,8 +40,9 @@ def assign_seats(passengers):
 
     """
 
-    return {passenger:seat for passenger, seat in
+    return {passenger: seat for passenger, seat in
             zip(passengers, generate_seats(len(passengers)))}
+
 
 def generate_codes(seat_numbers, flight_id):
     """Generate codes for a ticket.
