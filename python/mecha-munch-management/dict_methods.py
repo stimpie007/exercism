@@ -16,7 +16,7 @@ def read_notes(notes):
 
 def update_recipes(ideas, recipe_updates):
     """Update the recipe ideas dictionary."""
-    return ideas.update(recipe_updates)
+    ideas.update(recipe_updates)
     return ideas
 
 
