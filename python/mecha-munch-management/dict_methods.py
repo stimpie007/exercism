@@ -16,7 +16,8 @@ def read_notes(notes):
 
 def update_recipes(ideas, recipe_updates):
     """Update the recipe ideas dictionary."""
-    return ideas | dict(recipe_updates)
+    return ideas.update(recipe_updates)
+    return ideas
 
 
 def sort_entries(cart):
